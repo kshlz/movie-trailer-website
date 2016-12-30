@@ -2,7 +2,6 @@
 <head>
     <meta charset="utf-8">
     <title>Fresh Tomatoes!</title>
-
     <link href="https://fonts.googleapis.com/css?family=Bungee|Open+Sans" rel="stylesheet">
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
@@ -87,14 +86,20 @@
     
             // Get the youtube id for the trailer from the Movie Database API
             $.getJSON('https://api.themoviedb.org/3/movie/'+movie_id+'/videos?api_key=697922371b7a841b4a9695d55147f5a3', function (data) {
-                var trailerYouTubeId = data.results[0].key;
-                var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-                $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-                    'id': 'trailer-video',
-                    'type': 'text-html',
-                    'src': sourceUrl,
-                    'frameborder': 0
-                }));
+                
+                // Check to make sure the movie has a trailer
+                if(typeof data.results[0] !== 'undefined') {
+                    var trailerYouTubeId = data.results[0].key;
+                    var sourceUrl = 'https://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+                    $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+                        'id': 'trailer-video',
+                        'type': 'text-html',
+                        'src': sourceUrl,
+                        'frameborder': 0
+                    }));
+                } else {
+
+                }
             });
         });
         // Animate in the movies when the page loads
@@ -110,10 +115,8 @@
 <html lang="en">
   <body>
     <!-- Trailer Video Modal -->
-        
     <div class="modal" id="trailer">
       <div class="modal-dialog">
-        <div id="loading-container"><h1>Loading Trailer...</h1></div>
         <div class="modal-content">
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
@@ -141,9 +144,9 @@
     </nav>
     <div class="container">
       
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="330459" data-movie-title="Rogue One: A Star Wars Story" data-backdrop-path="http://image.tmdb.org/t/p/w780/tZjVVIYXACV4IIIhXeIM59ytqwS.jpg" data-poster="http://image.tmdb.org/t/p/w500/qjiskwlV1qQzRCjpV0cL9pEMF9a.jpg" data-overview="A rogue band of resistance fighters unite for a mission to steal the Death Star plans and bring a new hope to the galaxy." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="330459" data-movie-title="Rogue One: A Star Wars Story" data-backdrop-path="https://image.tmdb.org/t/p/w780/tZjVVIYXACV4IIIhXeIM59ytqwS.jpg" data-poster="https://image.tmdb.org/t/p/w500/qjiskwlV1qQzRCjpV0cL9pEMF9a.jpg" data-overview="A rogue band of resistance fighters unite for a mission to steal the Death Star plans and bring a new hope to the galaxy." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/tZjVVIYXACV4IIIhXeIM59ytqwS.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/tZjVVIYXACV4IIIhXeIM59ytqwS.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Rogue One: A Star Wars Story</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A rogue band of resistance fighters unite for a mission to steal the Death Star plans and bring a new hope to the galaxy.</p> 
@@ -152,9 +155,9 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="346672" data-movie-title="Underworld: Blood Wars" data-backdrop-path="http://image.tmdb.org/t/p/w780/PIXSMakrO3s2dqA7mCvAAoVR0E.jpg" data-poster="http://image.tmdb.org/t/p/w500/nHXiMnWUAUba2LZ0dFkNDVdvJ1o.jpg" data-overview="Vampire death dealer Selene fends off brutal attacks from both the Lycan clan and the Vampire faction that betrayed her. With her only allies, David and his father Thomas, she must stop the eternal war between Lycans and Vampires, even if it means she has to make the ultimate sacrifice." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="346672" data-movie-title="Underworld: Blood Wars" data-backdrop-path="https://image.tmdb.org/t/p/w780/PIXSMakrO3s2dqA7mCvAAoVR0E.jpg" data-poster="https://image.tmdb.org/t/p/w500/nHXiMnWUAUba2LZ0dFkNDVdvJ1o.jpg" data-overview="Vampire death dealer Selene fends off brutal attacks from both the Lycan clan and the Vampire faction that betrayed her. With her only allies, David and his father Thomas, she must stop the eternal war between Lycans and Vampires, even if it means she has to make the ultimate sacrifice." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/PIXSMakrO3s2dqA7mCvAAoVR0E.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/PIXSMakrO3s2dqA7mCvAAoVR0E.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Underworld: Blood Wars</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Vampire death dealer Selene fends off brutal attacks from both the Lycan clan and the Vampire faction that betrayed her. With her only allies, David and his father Thomas, she must stop the eternal war between Lycans and Vampires, even if it means she has to make the ultimate sacrifice.</p> 
@@ -163,9 +166,9 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="121856" data-movie-title="Assassin's Creed" data-backdrop-path="http://image.tmdb.org/t/p/w780/r8aRipzR4wlDx0m7Bpi43Q84imc.jpg" data-poster="http://image.tmdb.org/t/p/w500/lg5Cepv35WwuDS7lo4Oz91j7N0k.jpg" data-overview="Lynch discovers he is a descendant of the secret Assassins society through unlocked genetic memories that allow him to relive the adventures of his ancestor, Aguilar, in 15th Century Spain. After gaining incredible knowledge and skills he’s poised to take on the oppressive Knights Templar in the present day." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="121856" data-movie-title="Assassin's Creed" data-backdrop-path="https://image.tmdb.org/t/p/w780/r8aRipzR4wlDx0m7Bpi43Q84imc.jpg" data-poster="https://image.tmdb.org/t/p/w500/lg5Cepv35WwuDS7lo4Oz91j7N0k.jpg" data-overview="Lynch discovers he is a descendant of the secret Assassins society through unlocked genetic memories that allow him to relive the adventures of his ancestor, Aguilar, in 15th Century Spain. After gaining incredible knowledge and skills he’s poised to take on the oppressive Knights Templar in the present day." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/r8aRipzR4wlDx0m7Bpi43Q84imc.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/r8aRipzR4wlDx0m7Bpi43Q84imc.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Assassin's Creed</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Lynch discovers he is a descendant of the secret Assassins society through unlocked genetic memories that allow him to relive the adventures of his ancestor, Aguilar, in 15th Century Spain. After gaining incredible knowledge and skills he’s poised to take on the oppressive Knights Templar in the present day.</p> 
@@ -174,9 +177,9 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="274870" data-movie-title="Passengers" data-backdrop-path="http://image.tmdb.org/t/p/w780/5EW4TR3fWEqpKsWysNcBMtz9Sgp.jpg" data-poster="http://image.tmdb.org/t/p/w500/5gJkVIVU7FDp7AfRAbPSvvdbre2.jpg" data-overview="A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="274870" data-movie-title="Passengers" data-backdrop-path="https://image.tmdb.org/t/p/w780/5EW4TR3fWEqpKsWysNcBMtz9Sgp.jpg" data-poster="https://image.tmdb.org/t/p/w500/5gJkVIVU7FDp7AfRAbPSvvdbre2.jpg" data-overview="A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/5EW4TR3fWEqpKsWysNcBMtz9Sgp.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/5EW4TR3fWEqpKsWysNcBMtz9Sgp.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Passengers</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early.</p> 
@@ -185,31 +188,9 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="324670" data-movie-title="Spectral" data-backdrop-path="http://image.tmdb.org/t/p/w780/4Q6rr41mOqxor4yknHPgHs33AEF.jpg" data-poster="http://image.tmdb.org/t/p/w500/oXV2ayQYUQfHwpuMdWnZF0Geng5.jpg" data-overview="A special-ops team is dispatched to fight supernatural beings that have taken over a European city." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="335797" data-movie-title="Sing" data-backdrop-path="https://image.tmdb.org/t/p/w780/fxDXp8un4qNY9b1dLd7SH6CKzC.jpg" data-poster="https://image.tmdb.org/t/p/w500/5XFchtGifv8mz4qlyT8PZ7ZsjfG.jpg" data-overview="A koala named Buster recruits his best friend to help him drum up business for his theater by hosting a singing competition." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/4Q6rr41mOqxor4yknHPgHs33AEF.jpg" width="100%" alt="Card image cap">
-        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Spectral</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A special-ops team is dispatched to fight supernatural beings that have taken over a European city.</p> 
-            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="313369" data-movie-title="La La Land" data-backdrop-path="http://image.tmdb.org/t/p/w780/nadTlnTE6DdgmYsN4iWc2a2wiaI.jpg" data-poster="http://image.tmdb.org/t/p/w500/ylXCdC106IKiarftHkcacasaAcb.jpg" data-overview="Mia, an aspiring actress, serves lattes to movie stars in between auditions and Sebastian, a jazz musician, scrapes by playing cocktail party gigs in dingy bars, but as success mounts they are faced with decisions that begin to fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart." data-toggle="modal" data-target="#trailer">
-    <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/nadTlnTE6DdgmYsN4iWc2a2wiaI.jpg" width="100%" alt="Card image cap">
-        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">La La Land</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Mia, an aspiring actress, serves lattes to movie stars in between auditions and Sebastian, a jazz musician, scrapes by playing cocktail party gigs in dingy bars, but as success mounts they are faced with decisions that begin to fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.</p> 
-            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="335797" data-movie-title="Sing" data-backdrop-path="http://image.tmdb.org/t/p/w780/fxDXp8un4qNY9b1dLd7SH6CKzC.jpg" data-poster="http://image.tmdb.org/t/p/w500/5XFchtGifv8mz4qlyT8PZ7ZsjfG.jpg" data-overview="A koala named Buster recruits his best friend to help him drum up business for his theater by hosting a singing competition." data-toggle="modal" data-target="#trailer">
-    <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/fxDXp8un4qNY9b1dLd7SH6CKzC.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/fxDXp8un4qNY9b1dLd7SH6CKzC.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Sing</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A koala named Buster recruits his best friend to help him drum up business for his theater by hosting a singing competition.</p> 
@@ -218,9 +199,20 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="345920" data-movie-title="Collateral Beauty" data-backdrop-path="http://image.tmdb.org/t/p/w780/8ZewyVPm6K0zS8lFFZpye6j9D31.jpg" data-poster="http://image.tmdb.org/t/p/w500/fqSYnc5RcGZNDqjRIn7XwJ0Ea3B.jpg" data-overview="A tragic event sends a New York ad man on a downward spiral." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="324670" data-movie-title="Spectral" data-backdrop-path="https://image.tmdb.org/t/p/w780/4Q6rr41mOqxor4yknHPgHs33AEF.jpg" data-poster="https://image.tmdb.org/t/p/w500/oXV2ayQYUQfHwpuMdWnZF0Geng5.jpg" data-overview="A special-ops team is dispatched to fight supernatural beings that have taken over a European city." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/8ZewyVPm6K0zS8lFFZpye6j9D31.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/4Q6rr41mOqxor4yknHPgHs33AEF.jpg" width="100%" alt="Card image cap">
+        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
+            <h4 class="card-title">Spectral</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A special-ops team is dispatched to fight supernatural beings that have taken over a European city.</p> 
+            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="345920" data-movie-title="Collateral Beauty" data-backdrop-path="https://image.tmdb.org/t/p/w780/8ZewyVPm6K0zS8lFFZpye6j9D31.jpg" data-poster="https://image.tmdb.org/t/p/w500/fqSYnc5RcGZNDqjRIn7XwJ0Ea3B.jpg" data-overview="A tragic event sends a New York ad man on a downward spiral." data-toggle="modal" data-target="#trailer">
+    <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/8ZewyVPm6K0zS8lFFZpye6j9D31.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Collateral Beauty</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A tragic event sends a New York ad man on a downward spiral.</p> 
@@ -229,20 +221,9 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="384682" data-movie-title="Office Christmas Party" data-backdrop-path="http://image.tmdb.org/t/p/w780/bzguuhqUI9G8jJ3EBtJ9p12g1Lr.jpg" data-poster="http://image.tmdb.org/t/p/w500/xO1JT6qEgSMNshTaR3ZKOIu4KLV.jpg" data-overview="When his uptight CEO sister (Aniston) threatens to shut down his branch, the branch manager(T J Miller) throws an epic Christmas party in order to land a big client and save the day, but the party gets way out of hand." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="431730" data-movie-title="Winnetou: Das Geheimnis vom Silbersee" data-backdrop-path="https://image.tmdb.org/t/p/w780/vI5LHcnImYNpLIqVrGVwLwFbNKC.jpg" data-poster="https://image.tmdb.org/t/p/w500/9nTNjk3lG0olNubQa8SUGKE5yY8.jpg" data-overview="" data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/bzguuhqUI9G8jJ3EBtJ9p12g1Lr.jpg" width="100%" alt="Card image cap">
-        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Office Christmas Party</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">When his uptight CEO sister (Aniston) threatens to shut down his branch, the branch manager(T J Miller) throws an epic Christmas party in order to land a big client and save the day, but the party gets way out of hand.</p> 
-            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="431730" data-movie-title="Winnetou: Das Geheimnis vom Silbersee" data-backdrop-path="http://image.tmdb.org/t/p/w780/vI5LHcnImYNpLIqVrGVwLwFbNKC.jpg" data-poster="http://image.tmdb.org/t/p/w500/9nTNjk3lG0olNubQa8SUGKE5yY8.jpg" data-overview="" data-toggle="modal" data-target="#trailer">
-    <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/vI5LHcnImYNpLIqVrGVwLwFbNKC.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/vI5LHcnImYNpLIqVrGVwLwFbNKC.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Winnetou: Das Geheimnis vom Silbersee</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text"></p> 
@@ -251,20 +232,9 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="401689" data-movie-title="Mythica: The Godslayer" data-backdrop-path="http://image.tmdb.org/t/p/w780/8zmaHiujmjI6jh1JgRcw8VV3CNS.jpg" data-poster="http://image.tmdb.org/t/p/w500/g1uUZal1OJdRpbkuUyoUIPY8EgN.jpg" data-overview="As the Lich King's zombie legions ravage the world, a cursed young sorceress (Marek) embarks on a quest to obtain a weapon from the gods, with her friend Dagen, a self-serving half-elf rogue. But when she joins her sworn enemy in a desperate attempt to save the world, she must recover the good in herself before her friends are all dead, and defeat the Lich King before the gods are destroyed and the world forever enslaved." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="356305" data-movie-title="Why Him?" data-backdrop-path="https://image.tmdb.org/t/p/w780/vfnzrlzMxM6cmSBWGOJBOLaGXJR.jpg" data-poster="https://image.tmdb.org/t/p/w500/jXDV4Y98kxZcpmnr2JV6CB8OEGr.jpg" data-overview="A dad forms a bitter rivalry with his daughter's young rich boyfriend." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/8zmaHiujmjI6jh1JgRcw8VV3CNS.jpg" width="100%" alt="Card image cap">
-        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Mythica: The Godslayer</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">As the Lich King's zombie legions ravage the world, a cursed young sorceress (Marek) embarks on a quest to obtain a weapon from the gods, with her friend Dagen, a self-serving half-elf rogue. But when she joins her sworn enemy in a desperate attempt to save the world, she must recover the good in herself before her friends are all dead, and defeat the Lich King before the gods are destroyed and the world forever enslaved.</p> 
-            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="356305" data-movie-title="Why Him?" data-backdrop-path="http://image.tmdb.org/t/p/w780/vfnzrlzMxM6cmSBWGOJBOLaGXJR.jpg" data-poster="http://image.tmdb.org/t/p/w500/jXDV4Y98kxZcpmnr2JV6CB8OEGr.jpg" data-overview="A dad forms a bitter rivalry with his daughter's young rich boyfriend." data-toggle="modal" data-target="#trailer">
-    <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/vfnzrlzMxM6cmSBWGOJBOLaGXJR.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/vfnzrlzMxM6cmSBWGOJBOLaGXJR.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
             <h4 class="card-title">Why Him?</h4>
             <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A dad forms a bitter rivalry with his daughter's young rich boyfriend.</p> 
@@ -273,18 +243,84 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="360814" data-movie-title="Dangal" data-backdrop-path="http://image.tmdb.org/t/p/w780/kurKyTPddUCu6qEa9BYBAUbWW7v.jpg" data-poster="http://image.tmdb.org/t/p/w500/j9zZ3YUUyOHvT8znxTpEUvmvpm9.jpg" data-overview="A father aims to teach his daughters the sport of wrestling as he empowers them to achieve his lifelong goal." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="401689" data-movie-title="Mythica: The Godslayer" data-backdrop-path="https://image.tmdb.org/t/p/w780/8zmaHiujmjI6jh1JgRcw8VV3CNS.jpg" data-poster="https://image.tmdb.org/t/p/w500/g1uUZal1OJdRpbkuUyoUIPY8EgN.jpg" data-overview="As the Lich King's zombie legions ravage the world, a cursed young sorceress (Marek) embarks on a quest to obtain a weapon from the gods, with her friend Dagen, a self-serving half-elf rogue. But when she joins her sworn enemy in a desperate attempt to save the world, she must recover the good in herself before her friends are all dead, and defeat the Lich King before the gods are destroyed and the world forever enslaved." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/kurKyTPddUCu6qEa9BYBAUbWW7v.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/8zmaHiujmjI6jh1JgRcw8VV3CNS.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Dangal</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A father aims to teach his daughters the sport of wrestling as he empowers them to achieve his lifelong goal.</p> 
+            <h4 class="card-title">Mythica: The Godslayer</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">As the Lich King's zombie legions ravage the world, a cursed young sorceress (Marek) embarks on a quest to obtain a weapon from the gods, with her friend Dagen, a self-serving half-elf rogue. But when she joins her sworn enemy in a desperate attempt to save the world, she must recover the good in herself before her friends are all dead, and defeat the Lich King before the gods are destroyed and the world forever enslaved.</p> 
             <a href="#" class="btn btn-primary">Watch Trailer</a> -->
         </div>
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="432036" data-movie-title="Il mio vicino del piano di sopra" data-backdrop-path="popcorn.jpg" data-poster="http://image.tmdb.org/t/p/w500/1jV0Z4iNK6ZmOrWgfKVnyFd21id.jpg" data-overview="" data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="313369" data-movie-title="La La Land" data-backdrop-path="https://image.tmdb.org/t/p/w780/nadTlnTE6DdgmYsN4iWc2a2wiaI.jpg" data-poster="https://image.tmdb.org/t/p/w500/ylXCdC106IKiarftHkcacasaAcb.jpg" data-overview="Mia, an aspiring actress, serves lattes to movie stars in between auditions and Sebastian, a jazz musician, scrapes by playing cocktail party gigs in dingy bars, but as success mounts they are faced with decisions that begin to fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart." data-toggle="modal" data-target="#trailer">
+    <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/nadTlnTE6DdgmYsN4iWc2a2wiaI.jpg" width="100%" alt="Card image cap">
+        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
+            <h4 class="card-title">La La Land</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Mia, an aspiring actress, serves lattes to movie stars in between auditions and Sebastian, a jazz musician, scrapes by playing cocktail party gigs in dingy bars, but as success mounts they are faced with decisions that begin to fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.</p> 
+            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="384682" data-movie-title="Office Christmas Party" data-backdrop-path="https://image.tmdb.org/t/p/w780/bzguuhqUI9G8jJ3EBtJ9p12g1Lr.jpg" data-poster="https://image.tmdb.org/t/p/w500/xO1JT6qEgSMNshTaR3ZKOIu4KLV.jpg" data-overview="When his uptight CEO sister (Aniston) threatens to shut down his branch, the branch manager(T J Miller) throws an epic Christmas party in order to land a big client and save the day, but the party gets way out of hand." data-toggle="modal" data-target="#trailer">
+    <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/bzguuhqUI9G8jJ3EBtJ9p12g1Lr.jpg" width="100%" alt="Card image cap">
+        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
+            <h4 class="card-title">Office Christmas Party</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">When his uptight CEO sister (Aniston) threatens to shut down his branch, the branch manager(T J Miller) throws an epic Christmas party in order to land a big client and save the day, but the party gets way out of hand.</p> 
+            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="68730" data-movie-title="Silence" data-backdrop-path="https://image.tmdb.org/t/p/w780/eBvT5SZ14bjvxVWiLPB6Ll1wydX.jpg" data-poster="https://image.tmdb.org/t/p/w500/sHM6i6se7mwKGRDvW4nQC7dkeKI.jpg" data-overview="Two Jesuit priests, Sebastião Rodrigues and Francis Garrpe, travel to seventeenth century Japan which has, under the Tokugawa shogunate, banned Catholicism and almost all foreign contact. There they witness the persecution of Japanese Christians at the hands of their own government which wishes to purge Japan of all western influence. Eventually the priests separate and Rodrigues travels the countryside, wondering why God remains silent while His children suffer." data-toggle="modal" data-target="#trailer">
+    <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/eBvT5SZ14bjvxVWiLPB6Ll1wydX.jpg" width="100%" alt="Card image cap">
+        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
+            <h4 class="card-title">Silence</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Two Jesuit priests, Sebastião Rodrigues and Francis Garrpe, travel to seventeenth century Japan which has, under the Tokugawa shogunate, banned Catholicism and almost all foreign contact. There they witness the persecution of Japanese Christians at the hands of their own government which wishes to purge Japan of all western influence. Eventually the priests separate and Rodrigues travels the countryside, wondering why God remains silent while His children suffer.</p> 
+            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="334524" data-movie-title="Gold" data-backdrop-path="https://image.tmdb.org/t/p/w780/q1bW1PJ3biPFoyBQX0xmdckdZR0.jpg" data-poster="https://image.tmdb.org/t/p/w500/7feDlmX7gMN8CJaUbdIzwaCEDnY.jpg" data-overview="Kenny Wells, a modern-day prospector, hustler, and dreamer, is desperate for a lucky break. Left with few options, Wells teams up with an equally luckless geologist to execute a grandiose, last-ditch effort: to find gold deep in the uncharted jungle of Indonesia." data-toggle="modal" data-target="#trailer">
+    <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/q1bW1PJ3biPFoyBQX0xmdckdZR0.jpg" width="100%" alt="Card image cap">
+        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
+            <h4 class="card-title">Gold</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Kenny Wells, a modern-day prospector, hustler, and dreamer, is desperate for a lucky break. Left with few options, Wells teams up with an equally luckless geologist to execute a grandiose, last-ditch effort: to find gold deep in the uncharted jungle of Indonesia.</p> 
+            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="360814" data-movie-title="Dangal" data-backdrop-path="https://image.tmdb.org/t/p/w780/nBuiFy5ZxUwJt9znwlorHM0hN1s.jpg" data-poster="https://image.tmdb.org/t/p/w500/j9zZ3YUUyOHvT8znxTpEUvmvpm9.jpg" data-overview="Dangal is an extraordinary true story based on the life of Mahavir Singh and his two daughters, Geeta and Babita Phogat. The film traces the inspirational journey of a father who trains his daughters to become world class wrestlers." data-toggle="modal" data-target="#trailer">
+    <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/nBuiFy5ZxUwJt9znwlorHM0hN1s.jpg" width="100%" alt="Card image cap">
+        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
+            <h4 class="card-title">Dangal</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Dangal is an extraordinary true story based on the life of Mahavir Singh and his two daughters, Geeta and Babita Phogat. The film traces the inspirational journey of a father who trains his daughters to become world class wrestlers.</p> 
+            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="393457" data-movie-title="Fences" data-backdrop-path="https://image.tmdb.org/t/p/w780/jNlCIAcheh0iOuL3kz9x1Wq9WLG.jpg" data-poster="https://image.tmdb.org/t/p/w500/ngrvhGWNpzn8LVwMJTUR0LTCFjO.jpg" data-overview="In 1950s Pittsburgh, a frustrated African-American father struggles with the constraints of poverty, racism, and his own inner demons as he tries to raise a family." data-toggle="modal" data-target="#trailer">
+    <div class="card">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/jNlCIAcheh0iOuL3kz9x1Wq9WLG.jpg" width="100%" alt="Card image cap">
+        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
+            <h4 class="card-title">Fences</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">In 1950s Pittsburgh, a frustrated African-American father struggles with the constraints of poverty, racism, and his own inner demons as he tries to raise a family.</p> 
+            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="432036" data-movie-title="Il mio vicino del piano di sopra" data-backdrop-path="popcorn.jpg" data-poster="https://image.tmdb.org/t/p/w500/1jV0Z4iNK6ZmOrWgfKVnyFd21id.jpg" data-overview="" data-toggle="modal" data-target="#trailer">
     <div class="card">
         <img class="card-img-top" src="popcorn.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
@@ -295,67 +331,34 @@
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="381284" data-movie-title="Hidden Figures" data-backdrop-path="http://image.tmdb.org/t/p/w780/kkUlAvfTWUdnD3hWvPbo6797H9W.jpg" data-poster="http://image.tmdb.org/t/p/w500/6cbIDZLfwUTmttXTmNi8Mp3Rnmg.jpg" data-overview="The incredible untold story of Katherine G. Johnson, Dorothy Vaughan and Mary Jackson - brilliant African-American women working at NASA, who served as the brains behind one of the greatest operations in history: the launch of astronaut John Glenn into orbit, a stunning achievement that restored the nation's confidence, turned around the Space Race, and galvanized the world. The visionary trio crossed all gender and race lines to inspire generations to dream big." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="342473" data-movie-title="Leap!" data-backdrop-path="https://image.tmdb.org/t/p/w780/dYPL6qaqMRGD12fHzYQlfUjJH1e.jpg" data-poster="https://image.tmdb.org/t/p/w500/nsyegjEq4XIyxN6U7fEbw1QwquH.jpg" data-overview="Set in 1879 Paris. An orphan girl dreams of becoming a ballerina and flees her rural Brittany for Paris, where she passes for someone else and accedes to the position of pupil at the Grand Opera house." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/kkUlAvfTWUdnD3hWvPbo6797H9W.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/dYPL6qaqMRGD12fHzYQlfUjJH1e.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Hidden Figures</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">The incredible untold story of Katherine G. Johnson, Dorothy Vaughan and Mary Jackson - brilliant African-American women working at NASA, who served as the brains behind one of the greatest operations in history: the launch of astronaut John Glenn into orbit, a stunning achievement that restored the nation's confidence, turned around the Space Race, and galvanized the world. The visionary trio crossed all gender and race lines to inspire generations to dream big.</p> 
+            <h4 class="card-title">Leap!</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Set in 1879 Paris. An orphan girl dreams of becoming a ballerina and flees her rural Brittany for Paris, where she passes for someone else and accedes to the position of pupil at the Grand Opera house.</p> 
             <a href="#" class="btn btn-primary">Watch Trailer</a> -->
         </div>
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="393457" data-movie-title="Fences" data-backdrop-path="http://image.tmdb.org/t/p/w780/jNlCIAcheh0iOuL3kz9x1Wq9WLG.jpg" data-poster="http://image.tmdb.org/t/p/w500/ngrvhGWNpzn8LVwMJTUR0LTCFjO.jpg" data-overview="In 1950s Pittsburgh, a frustrated African-American father struggles with the constraints of poverty, racism, and his own inner demons as he tries to raise a family." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="311324" data-movie-title="The Great Wall" data-backdrop-path="https://image.tmdb.org/t/p/w780/fvG75x8sdEzNYJ2mC1vuiaqy3BI.jpg" data-poster="https://image.tmdb.org/t/p/w500/gpkTwudOGh4ItvoTsyGzSscHtHU.jpg" data-overview="The story of an elite force making a last stand for humanity on the world’s most iconic structure." data-toggle="modal" data-target="#trailer">
     <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/jNlCIAcheh0iOuL3kz9x1Wq9WLG.jpg" width="100%" alt="Card image cap">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w780/fvG75x8sdEzNYJ2mC1vuiaqy3BI.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Fences</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">In 1950s Pittsburgh, a frustrated African-American father struggles with the constraints of poverty, racism, and his own inner demons as he tries to raise a family.</p> 
+            <h4 class="card-title">The Great Wall</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">The story of an elite force making a last stand for humanity on the world’s most iconic structure.</p> 
             <a href="#" class="btn btn-primary">Watch Trailer</a> -->
         </div>
     </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="68730" data-movie-title="Silence" data-backdrop-path="http://image.tmdb.org/t/p/w780/eBvT5SZ14bjvxVWiLPB6Ll1wydX.jpg" data-poster="http://image.tmdb.org/t/p/w500/sHM6i6se7mwKGRDvW4nQC7dkeKI.jpg" data-overview="Two Jesuit priests, Sebastião Rodrigues and Francis Garrpe, travel to seventeenth century Japan which has, under the Tokugawa shogunate, banned Catholicism and almost all foreign contact. There they witness the persecution of Japanese Christians at the hands of their own government which wishes to purge Japan of all western influence. Eventually the priests separate and Rodrigues travels the countryside, wondering why God remains silent while His children suffer." data-toggle="modal" data-target="#trailer">
-    <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/eBvT5SZ14bjvxVWiLPB6Ll1wydX.jpg" width="100%" alt="Card image cap">
-        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Silence</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Two Jesuit priests, Sebastião Rodrigues and Francis Garrpe, travel to seventeenth century Japan which has, under the Tokugawa shogunate, banned Catholicism and almost all foreign contact. There they witness the persecution of Japanese Christians at the hands of their own government which wishes to purge Japan of all western influence. Eventually the priests separate and Rodrigues travels the countryside, wondering why God remains silent while His children suffer.</p> 
-            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="334524" data-movie-title="Gold" data-backdrop-path="http://image.tmdb.org/t/p/w780/q1bW1PJ3biPFoyBQX0xmdckdZR0.jpg" data-poster="http://image.tmdb.org/t/p/w500/7feDlmX7gMN8CJaUbdIzwaCEDnY.jpg" data-overview="Kenny Wells, a modern-day prospector, hustler, and dreamer, is desperate for a lucky break. Left with few options, Wells teams up with an equally luckless geologist to execute a grandiose, last-ditch effort: to find gold deep in the uncharted jungle of Indonesia." data-toggle="modal" data-target="#trailer">
-    <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/q1bW1PJ3biPFoyBQX0xmdckdZR0.jpg" width="100%" alt="Card image cap">
-        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Gold</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Kenny Wells, a modern-day prospector, hustler, and dreamer, is desperate for a lucky break. Left with few options, Wells teams up with an equally luckless geologist to execute a grandiose, last-ditch effort: to find gold deep in the uncharted jungle of Indonesia.</p> 
-            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="259695" data-movie-title="Live by Night" data-backdrop-path="http://image.tmdb.org/t/p/w780/y412aJ3K1NuJtBgcxXEzVYLNvsC.jpg" data-poster="http://image.tmdb.org/t/p/w500/utGq0tOcAPjm5DNMMAbDZi0JTik.jpg" data-overview="A story set in the Prohibition Era and centered around a group of individuals and their dealings in the world of organized crime." data-toggle="modal" data-target="#trailer">
-    <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w780/y412aJ3K1NuJtBgcxXEzVYLNvsC.jpg" width="100%" alt="Card image cap">
-        <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">Live by Night</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">A story set in the Prohibition Era and centered around a group of individuals and their dealings in the world of organized crime.</p> 
-            <a href="#" class="btn btn-primary">Watch Trailer</a> -->
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="421627" data-movie-title="When Calls the Heart Christmas" data-backdrop-path="popcorn.jpg" data-poster="http://image.tmdb.org/t/p/w500/lcrBzrFB9UUehT9AH6Nc5q5c3U0.jpg" data-overview="An intriguing peddler comes to Hope Valley selling the townspeople his wears and teaching them valuable lessons about joy and giving. And when the townspeople realize that the recently displaced settlers in the area will not have a proper Christmas, they come together to create a special holiday celebration – including a Nativity presentation from the schoolchildren — that will infuse everyone with the true spirit of Christmas." data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-tmdb-id="344031" data-movie-title="Console Wars" data-backdrop-path="popcorn.jpg" data-poster="poster.jpg" data-overview="Employees at the gaming company SEGA try to make a more popular device than the ones made by their dominant rival, Nintendo." data-toggle="modal" data-target="#trailer">
     <div class="card">
         <img class="card-img-top" src="popcorn.jpg" width="100%" alt="Card image cap">
         <div style="position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-shadow: 2px 2px 0 #000;">
-            <h4 class="card-title">When Calls the Heart Christmas</h4>
-            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">An intriguing peddler comes to Hope Valley selling the townspeople his wears and teaching them valuable lessons about joy and giving. And when the townspeople realize that the recently displaced settlers in the area will not have a proper Christmas, they come together to create a special holiday celebration – including a Nativity presentation from the schoolchildren — that will infuse everyone with the true spirit of Christmas.</p> 
+            <h4 class="card-title">Console Wars</h4>
+            <!-- <p style="height: 50px; overflow: hidden;" class="card-text">Employees at the gaming company SEGA try to make a more popular device than the ones made by their dominant rival, Nintendo.</p> 
             <a href="#" class="btn btn-primary">Watch Trailer</a> -->
         </div>
     </div>

@@ -90,14 +90,20 @@ MAIN_PAGE_HEAD = '''
     
             // Get the youtube id for the trailer from the Movie Database API
             $.getJSON('https://api.themoviedb.org/3/movie/'+movie_id+'/videos?api_key=697922371b7a841b4a9695d55147f5a3', function (data) {
-                var trailerYouTubeId = data.results[0].key;
-                var sourceUrl = 'https://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-                $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-                    'id': 'trailer-video',
-                    'type': 'text-html',
-                    'src': sourceUrl,
-                    'frameborder': 0
-                }));
+                
+                // Check to make sure the movie has a trailer
+                if(typeof data.results[0] !== 'undefined') {
+                    var trailerYouTubeId = data.results[0].key;
+                    var sourceUrl = 'https://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+                    $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+                        'id': 'trailer-video',
+                        'type': 'text-html',
+                        'src': sourceUrl,
+                        'frameborder': 0
+                    }));
+                } else {
+
+                }
             });
         });
         // Animate in the movies when the page loads
@@ -118,7 +124,6 @@ MAIN_PAGE_CONTENT = '''
     <!-- Trailer Video Modal -->
     <div class="modal" id="trailer">
       <div class="modal-dialog">
-        <div id="loading-container"><h1>Loading Trailer...</h1></div>
         <div class="modal-content">
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>

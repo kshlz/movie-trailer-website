@@ -29,12 +29,16 @@ def create_movies(settings):
     movies = []
     i = 0
     for item in api['results']:
-        image_url = settings['base_url'] + settings['poster_sizes'][4] + item['poster_path']
         # Some movies do not have backdrop images, so we need to check for their existence
         if item['backdrop_path'] is not None:
-            backdrop_url = settings['base_url'] + settings['backdrop_sizes'][1] + item['backdrop_path']
+            backdrop_url = settings['secure_base_url'] + settings['backdrop_sizes'][1] + item['backdrop_path']
         else:
             backdrop_url = 'popcorn.jpg'
+
+        if item['poster_path'] is not None:
+            image_url = settings['secure_base_url'] + settings['poster_sizes'][4] + item['poster_path']
+        else:
+            image_url = 'poster.jpg'
 
         movie = media.Movie(item['title'], image_url, "test", item['overview'], i, item['id'], backdrop_url)
         movies.insert(i, movie)
