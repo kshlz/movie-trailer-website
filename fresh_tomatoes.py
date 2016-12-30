@@ -102,7 +102,7 @@ MAIN_PAGE_HEAD = '''
                         'frameborder': 0
                     }));
                 } else {
-
+                    $("#trailer-video-container").empty().html("Uh oh. The API doesn't have this trailer yet.");
                 }
             });
         });
