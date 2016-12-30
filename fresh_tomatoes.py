@@ -91,7 +91,7 @@ MAIN_PAGE_HEAD = '''
             // Get the youtube id for the trailer from the Movie Database API
             $.getJSON('https://api.themoviedb.org/3/movie/'+movie_id+'/videos?api_key=697922371b7a841b4a9695d55147f5a3', function (data) {
                 var trailerYouTubeId = data.results[0].key;
-                var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+                var sourceUrl = 'https://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
                 $("#trailer-video-container").empty().append($("<iframe></iframe>", {
                     'id': 'trailer-video',
                     'type': 'text-html',
