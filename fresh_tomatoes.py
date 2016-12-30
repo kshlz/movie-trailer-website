@@ -48,6 +48,7 @@ MAIN_PAGE_HEAD = '''
         #trailer-video {
             width: 100%;
             height: 100%;
+            text-align: center;
         }
     
         .movie-tile:hover {
@@ -76,6 +77,9 @@ MAIN_PAGE_HEAD = '''
         });
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.movie-tile', function (event) {
+            // Show the loading spinner
+            $("#trailer-video-container").empty().html('<h1><i class="fa fa-circle-o-notch" aria-hidden="true"></i> Loading ...</h1>');
+
             // Get movie info from to display on modal
             var backdrop_path = $(this).attr('data-backdrop-path');
             var movie_poster = $(this).attr('data-poster');
@@ -91,7 +95,6 @@ MAIN_PAGE_HEAD = '''
     
             // Get the youtube id for the trailer from the Movie Database API
             $.getJSON('https://api.themoviedb.org/3/movie/'+movie_id+'/videos?api_key=697922371b7a841b4a9695d55147f5a3', function (data) {
-                
                 // Check to make sure the movie has a trailer
                 if(typeof data.results[0] !== 'undefined') {
                     var trailerYouTubeId = data.results[0].key;
